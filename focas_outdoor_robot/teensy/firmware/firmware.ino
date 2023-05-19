@@ -69,15 +69,28 @@ void setup() {
 * MotorKill Timer ISR Function
 *******************************************************************************/
 void ESTOP_SWITCH_FUNC() {
-  ch1Value = readChannel(CH1, -100, 100, 0); // Linear
-  ch2Value = readChannel(CH2, -100, 100, 0); // Ang
   ch3Value = readChannel(CH3, -1,1,0);
+
   ch4Value = readSwitch(CH4, false);
-  
   if (ch4Value == 0)
     digitalWrite(RF_CONTROL,HIGH);
   else if (ch4Value==1)
     digitalWrite(RF_CONTROL,LOW); 
+  
+  // if (ch3Value = -1){
+  //   ch2Value = readChannel(CH2, -50, 50, 0); // Ang
+  //   ch1Value = readChannel(CH1, -50, 50, 0); // Linear
+  // }
+
+  // if (ch3Value = 0){
+  //   ch2Value = readChannel(CH2, -200, 200, 0); // Ang
+  //   ch1Value = readChannel(CH1, -200, 200, 0); // Linear
+  // }
+
+  // if (ch3Value = 1){
+  //   ch2Value = readChannel(CH2, -150, 150, 0); // Ang
+  //   ch1Value = readChannel(CH1, -150, 150, 0); // Linear
+  // }
 }
 
 /*******************************************************************************
@@ -367,13 +380,10 @@ void RF_control() {
   // Receive data from RC
   int RightMotor = 0;
   int LeftMotor = 0;
-  // Get values for each channel
-  // ch1Value = readChannel(CH1, -100, 100, 0); // Linear
-  // ch2Value = readChannel(CH2, -100, 100, 0); // Ang
-  // ch3Value = readChannel(CH3, -1,1,0);
 
   // Read channel and Move the robot according to the kinematic model
   // Do Something using this values
+
   if ( ch2Value >= 0)
   {
     if( ch1Value >=0 )
@@ -389,7 +399,7 @@ void RF_control() {
     }
   }
   
-  if ( ch2Value < 0)
+  if (ch2Value < 0)
   {
     if( ch1Value >=0 )
     {
@@ -406,54 +416,67 @@ void RF_control() {
     }
   }
 
+  // if ( ch3Value == 0 ){
+  //   // Normal
+  //   if ( LeftMotor > 100){
+  //   LeftMotor = 100;
+  //   }
+    
+  //   if ( LeftMotor < -100){
+  //     LeftMotor = -100;
+  //   }
 
-  if ( LeftMotor > 100){
-    LeftMotor = 100;
-  }
-  if ( LeftMotor < -100){
-    LeftMotor = -100;
-  }
+  //   if ( RightMotor > 100){
+  //     RightMotor = 100;
+  //   }
+  //   if ( RightMotor < -100){
+  //     RightMotor = -100;
+  //   }
+  // }
+  
+  // if ( ch3Value == -1 ){
+  //   // Eco
+  //   if ( LeftMotor > 50){
+  //   LeftMotor = 50;
+  //   }
+    
+  //   if ( LeftMotor < -50){
+  //     LeftMotor = -50;
+  //   }
 
-  if ( RightMotor > 100){
-    RightMotor = 100;
-  }
-  if ( RightMotor < -100){
-    RightMotor = -100;
-  }
+  //   if ( RightMotor > 50){
+  //     RightMotor = 50;
+  //   }
+  //   if ( RightMotor < -50){
+  //     RightMotor = -50;
+  //   }
+  // }
+
+  // if ( ch3Value == 1 ){
+  //   // Sports
+  //   if ( LeftMotor > 150){
+  //   LeftMotor = 150;
+  //   }
+    
+  //   if ( LeftMotor < 150){
+  //     LeftMotor = 150;
+  //   }
+
+  //   if ( RightMotor > 150){
+  //     RightMotor = 150;
+  //   }
+
+  //   if ( RightMotor < -150){
+  //     RightMotor = -150;
+  //   }
+    
+  // }
 
   MOTOR_PWM_CONTROL(LEFT_FRONT, -LeftMotor);
   MOTOR_PWM_CONTROL(LEFT_REAR, -LeftMotor);
   MOTOR_PWM_CONTROL(RIGHT_FRONT, RightMotor);
   MOTOR_PWM_CONTROL(RIGHT_REAR, RightMotor);
   
-  // for(int i = 0; i < abs(LeftMotor); i++){
-    // int a = LeftMotor;
-    // MOTOR_PWM_CONTROL(LEFT_FRONT, -i);
-    // MOTOR_PWM_CONTROL(LEFT_REAR, -i);
-  // }
-  
-  // for(int i = 0; i < abs(RightMotor); i++){
-  //   int b = RightMotor;
-  //   MOTOR_PWM_CONTROL(RIGHT_FRONT, -b);
-  //   MOTOR_PWM_CONTROL(RIGHT_REAR, -b);
-  // }
-
-  // if (ch3Value == 1){
-  // MOTOR_PWM_CONTROL(LEFT_FRONT, -ch1Value);
-  // MOTOR_PWM_CONTROL(LEFT_REAR, -ch1Value);
-  
-  // MOTOR_PWM_CONTROL(RIGHT_FRONT, ch1Value);
-  // MOTOR_PWM_CONTROL(RIGHT_REAR, ch1Value);
-  // }
-  
-  // if (ch3Value == 0){
-  // MOTOR_PWM_CONTROL(LEFT_FRONT, -ch2Value);
-  // MOTOR_PWM_CONTROL(LEFT_REAR, -ch2Value);
-
-  // MOTOR_PWM_CONTROL(RIGHT_FRONT, -ch2Value);
-  // MOTOR_PWM_CONTROL(RIGHT_REAR, -ch2Value);
-  // }
-
   // Debug printing
   Debug = true;
   if(Debug = true){
@@ -544,7 +567,7 @@ void loop() {
   // }
   
   RF_control();
-  delay(100);
+  delay(10);
 
   // Publish relevant robot information
   if ((t - tTime[2]) >= (1000 / 100)) //DRIVE_INFORMATION_PUBLISH_FREQUENCY))
