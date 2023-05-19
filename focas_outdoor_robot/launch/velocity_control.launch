@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+    
+  <rosparam file="$(find focas_outdoor_robot)/config/controllers.yaml" command="load"/>
+  <rosparam file="$(find focas_outdoor_robot)/config/joint_limits.yaml" command="load"/>
+   
+  <arg name="model" default="$(find focas_outdoor_robot)/urdf/ugv.urdf"/>
+  <arg name="gui" default="true" />
+
+  <param name="robot_description" command="$(find xacro)/xacro $(arg model)" />
+  <param name="use_gui" value="$(arg gui)"/>
+  
+  <node name="robot_hardware_interface" pkg="focas_outdoor_robot" type="joint_hardware_interface" output="screen"/>
+  
+  <!-- node converting incoming message to joint_states -->
+  <node name="motor_to_joint_states" pkg="focas_outdoor_robot" type="motor_to_joint_states.py" output="screen"/> 
+
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher"/>
+  
+  <!-- <node name="rviz" pkg="rviz" type="rviz"/> -->
+  
+  <!-- Spawn Controller -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen"
+        args="
+        	/joint_actuator/joints_update
+            /joint_actuator/joint1_velocity_controller
+        "/>
+</launch>

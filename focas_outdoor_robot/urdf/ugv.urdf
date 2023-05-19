@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="ugv">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="0.0282019764038671 -0.0382074334815261 -0.0164764697429973"
+        rpy="0 0 0" />
+      <mass
+        value="12.7884694589669" />
+      <inertia
+        ixx="0.321638600232192"
+        ixy="-0.00424826188790352"
+        ixz="2.10997230650026E-16"
+        iyy="0.885236606280384"
+        iyz="6.7762635780344E-18"
+        izz="0.706132235086057" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://focas_outdoor_robot/urdf/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.898039215686275 0.917647058823529 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://focas_outdoor_robot/urdf/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="Wheel_FL">
+    <inertial>
+      <origin
+        xyz="-2.7756E-17 -6.9389E-18 -0.13988"
+        rpy="0 0 0" />
+      <mass
+        value="4.4576" />
+      <inertia
+        ixx="0.019867"
+        ixy="8.6736E-19"
+        ixz="6.2247E-20"
+        iyy="0.019867"
+        iyz="1.0141E-18"
+        izz="0.03213" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://focas_outdoor_robot/urdf/meshes/Wheel_FL.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://focas_outdoor_robot/urdf/meshes/Wheel_FL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FL"
+    type="continuous">
+    <origin
+      xyz="0.20544 0.22648 -0.068006"
+      rpy="1.5708 0.2776 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Wheel_FL" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  <link
+    name="Wheel_FR">
+    <inertial>
+      <origin
+        xyz="2.7756E-17 0 -0.13988"
+        rpy="0 0 0" />
+      <mass
+        value="4.4576" />
+      <inertia
+        ixx="0.019867"
+        ixy="0"
+        ixz="9.4778E-19"
+        iyy="0.019867"
+        iyz="2.9885E-19"
+        izz="0.03213" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://focas_outdoor_robot/urdf/meshes/Wheel_FR.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://focas_outdoor_robot/urdf/meshes/Wheel_FR.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="FR"
+    type="continuous">
+    <origin
+      xyz="0.20544 -0.19352 -0.068006"
+      rpy="1.5708 0.38752 -3.1416" />
+    <parent
+      link="base_link" />
+    <child
+      link="Wheel_FR" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+
+  <link
+    name="Wheel_BL">
+    <inertial>
+      <origin
+        xyz="0 0 -0.13988"
+        rpy="0 0 0" />
+      <mass
+        value="4.4576" />
+      <inertia
+        ixx="0.019867"
+        ixy="4.3368E-19"
+        ixz="1.3238E-19"
+        iyy="0.019867"
+        iyz="-3.507E-19"
+        izz="0.03213" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://focas_outdoor_robot/urdf/meshes/Wheel_BL.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://focas_outdoor_robot/urdf/meshes/Wheel_BL.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="BL"
+    type="continuous">
+    <origin
+      xyz="-0.15456 0.22648 -0.068006"
+      rpy="1.5708 0.35416 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="Wheel_BL" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+  
+  <link
+    name="Wheel_BR">
+    <inertial>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <mass
+        value="4.4576" />
+      <inertia
+        ixx="0.019867"
+        ixy="0"
+        ixz="9.4778E-19"
+        iyy="0.019867"
+        iyz="2.9885E-19"
+        izz="0.03213" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://focas_outdoor_robot/urdf/meshes/Wheel_BR.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.79216 0.81961 0.93333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://focas_outdoor_robot/urdf/meshes/Wheel_BR.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="BR"
+    type="continuous">
+    <origin
+      xyz="-0.154561678579732 -0.193523530257003 -0.0680062105466368"
+      rpy="1.5707963267949 -0.0892133468575759 3.14159265358979" />
+    <parent
+      link="base_link" />
+    <child
+      link="Wheel_BR" />
+    <axis
+      xyz="0 0 1" />
+  </joint>
+</robot>
