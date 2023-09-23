@@ -1,7 +1,8 @@
 # Focas outdoor robot
 
 ### Introduction
-Developed hardware-software stack for a four-wheel differential drive mobile robot for algorithm testing of perception and planning stack. Main motive behind developing this robot was to make it modular in terms of mechanical structure as well sensor/electrical suit while maintaining base level safety. ( Underdevelopment ).
+This repository contains documentation of a four-wheel differential drive mobile robot developed at FOCAS Lab for algorithm testing of perception and planning stack. 
+Main motive behind developing this robot was to make it modular in terms of mechanical structure as well sensor/electrical suit while maintaining base level safety. ( Underdevelopment ).
 <center>
 <img src="Docs/Images/researchrobot.gif" height="200px">
 </center>
